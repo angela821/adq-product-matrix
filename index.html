@@ -395,6 +395,7 @@ const DATA = [
       {
         name: "24 小时下单",
         warm: false,
+        noRefText: "能力已全量",
         advice: `🚩 24 小时下单优化：当日即时回流数据归因预估，促进短效爆发转化。`,
         ref: null
       }
@@ -583,7 +584,7 @@ function showDetail(sceneId, prodName){
               <span class="ico">↗</span><span>${escapeHTML(r.title)}</span>
             </a>`).join("") + `
             <div class="meta">点击跳转微信文档</div>` : `
-            <span class="empty">能力已全量</span>
+            <span class="empty">${escapeHTML(prod.noRefText || "该能力无需对外文档，由行业运营老师配置")}</span>
           `}
         </div>
       </div>
