@@ -251,6 +251,7 @@
     display:inline-flex;align-items:center;justify-content:center;font-size:12px;
     flex-shrink:0;margin-top:2px;
   }
+  .detail-inline .ref a + a{margin-top:10px}
   .detail-inline .ref .empty{color:#9ca3af;font-size:13px}
   .detail-inline .meta{
     margin-top:8px;font-size:11.5px;color:#6b7280;
@@ -444,7 +445,10 @@ const DATA = [
         advice: `优势：可以将视频号主页视频作为素材投放广告，内容更原生，转赞评数据可累积。
 • 方法一：竞价推广 - 支持手动勾选挂车视频，并根据视频反选营销内容组合
 • 方法二：小店艾米 - 全库智选勾选授权视频号，可自动抓取视频号主页视频`,
-        ref: { title: "腾讯营销-ADQ-小店艾米原生内容推广产品说明", url: "https://doc.weixin.qq.com/doc/w3_AawAZgZPAMACNk0hI1rY9Rt6m7H4T" }
+        ref: [
+          { title: "视频号主页视频推广-竞价投放指引（能力已全量）", url: "https://doc.weixin.qq.com/doc/w3_ACYACgZ4ACcCNXp4ef7nzQKuNrxLq" },
+          { title: "腾讯营销-ADQ-小店艾米原生内容推广产品说明", url: "https://doc.weixin.qq.com/doc/w3_AawAZgZPAMACNk0hI1rY9Rt6m7H4T" }
+        ]
       },
       {
         name: "全库智选",
@@ -559,10 +563,11 @@ function showDetail(sceneId, prodName){
     .forEach(s => s.classList.toggle("active", s.dataset.id===sceneId));
 
   const imgs = IMGS[prodName] || [];
+  const refs = Array.isArray(prod.ref) ? prod.ref : (prod.ref ? [prod.ref] : []);
 
   box.innerHTML = `
     <div class="head">
-      <h3>${escapeHTML(prod.name)} <span class="pill">${prod.ref ? "含参考文档" : "平台能力"}</span></h3>
+      <h3>${escapeHTML(prod.name)} <span class="pill">${refs.length ? (refs.length > 1 ? `含 ${refs.length} 篇文档` : "含参考文档") : "平台能力"}</span></h3>
       <button class="close" aria-label="收起">✕</button>
     </div>
     <div class="body">
@@ -571,14 +576,13 @@ function showDetail(sceneId, prodName){
         <div class="advice">${linkifyAdvice(prod.advice)}</div>
       </div>
       <div>
-        <h4>参考文档</h4>
+        <h4>参考文档${refs.length > 1 ? `（${refs.length} 篇）` : ""}</h4>
         <div class="ref">
-          ${prod.ref ? `
-            <a href="${prod.ref.url}" target="_blank" rel="noopener">
-              <span class="ico">↗</span><span>${escapeHTML(prod.ref.title)}</span>
-            </a>
-            <div class="meta">点击跳转微信文档</div>
-          ` : `
+          ${refs.length ? refs.map(r => `
+            <a href="${r.url}" target="_blank" rel="noopener">
+              <span class="ico">↗</span><span>${escapeHTML(r.title)}</span>
+            </a>`).join("") + `
+            <div class="meta">点击跳转微信文档</div>` : `
             <span class="empty">该能力无需对外文档，由行业运营老师配置</span>
           `}
         </div>
