@@ -154,11 +154,13 @@
     font:inherit;
     font-size:13.5px;
     font-weight:600;
-    padding:9px 14px;
+    padding:9px 14px 8px;
     border-radius:10px;
     cursor:pointer;
     transition:transform .15s ease, box-shadow .15s ease, background .2s ease;
     line-height:1.2;
+    display:flex;flex-direction:column;align-items:flex-start;gap:3px;
+    text-align:left;
   }
   .chip:hover{
     transform:translateY(-2px);
@@ -173,9 +175,15 @@
   }
   .chip .star{color:#e8a200;margin-right:6px;font-size:12px}
   .chip[aria-pressed="true"] .star{color:#ffd966}
+  .chip .name{display:inline-flex;align-items:center}
+  .chip .tip{
+    font-size:11px;font-weight:400;color:#5b7a99;line-height:1.35;
+  }
+  .chip[aria-pressed="true"] .tip{color:rgba(255,255,255,.85)}
+  .chip.warm .tip{color:#96791f}
   .chip.warm{--bg:#FFF3C9;--fg:#7a5b00;border-color:rgba(184,134,11,.25)}
   .chip.warm:hover{background:#FFE9A0}
-  .chip.has-img::after{
+  .chip.has-img .name::after{
     content:"🖼";
     font-size:11px;
     margin-left:6px;
@@ -372,12 +380,14 @@ const DATA = [
     products: [
       {
         name: "商品聚合页",
+        tip: "预表达多商品，模型更精准",
         warm: true,
         advice: `✅ 推广产品从「视频号直播」升级为「商品聚合页」——把主推品 + 搭配品打包成一个聚合页作为投放对象，帮助广告预表达多商品信息，模型更精准。`,
         ref: { title: "闭环链路【商品聚合页库 - 微信小店商品组合】创编流程 SOP", url: "https://doc.weixin.qq.com/doc/w3_AN0ARwawACgCNgNOzKDrjR00Ewj0F" }
       },
       {
         name: "小店艾米",
+        tip: "降低广告创编难度，智能投放",
         warm: false,
         advice: `✅ 小店艾米：
 • 短直双开：支持广告主创建一个项目，推广产品可同时多选「微信小店商品」和「直播间」。
@@ -387,6 +397,7 @@ const DATA = [
       },
       {
         name: "一键艾米",
+        tip: "一键把普通广告增投为艾米广告",
         warm: false,
         advice: `✅ 一键艾米：可将竞价推广广告一键增投成为小店艾米项目，帮助广告主获得额外增量！
 * 该能力为小店艾米专属能力。`,
@@ -394,6 +405,7 @@ const DATA = [
       },
       {
         name: "24 小时下单",
+        tip: "直接优化24小时下单行为，爆发更强",
         warm: false,
         noRefText: "能力已全量",
         advice: `🚩 24 小时下单优化：当日即时回流数据归因预估，促进短效爆发转化。`,
@@ -409,6 +421,7 @@ const DATA = [
     products: [
       {
         name: "种草 agent",
+        tip: "智能生成种草人群，可用于投放找对TA",
         warm: false,
         advice: `✅ 可根据现有的品牌 / 客户、商品类目、达人 / 明星和相似品牌，生成 / 推荐真实可投的人群组合。
 账户维度生效，提前 7 天找行业运营老师生产及配置！`,
@@ -416,6 +429,7 @@ const DATA = [
       },
       {
         name: "分人群出价",
+        tip: "针对目标人群，进行权重提升",
         warm: true,
         advice: `🚩 分人群出价：商品类目种草、相似视频号种草、电商送礼节点等高优人群提权配置。
 账户维度生效，提前 3 天找行业运营老师配置！`,
@@ -431,6 +445,7 @@ const DATA = [
     products: [
       {
         name: "直播实时画面",
+        tip: "广告外层显示直播间画面，转化更强",
         warm: true,
         advice: `优势：对用户直接展示直播间实时画面，转化力更强。
 操作建议：每条广告增加实时画面创意，一次专场不少于 30 条
@@ -442,6 +457,7 @@ const DATA = [
       },
       {
         name: "主页视频推广",
+        tip: "直投视频号主页视频，内容更原生",
         warm: false,
         advice: `优势：可以将视频号主页视频作为素材投放广告，内容更原生，转赞评数据可累积。
 • 方法一：竞价推广 - 支持手动勾选挂车视频，并根据视频反选营销内容组合
@@ -453,6 +469,7 @@ const DATA = [
       },
       {
         name: "全库智选",
+        tip: "基于历史投放创意，优中选优",
         warm: false,
         advice: `系统会在广告主授权的前提下，拉取该账号下有权限的、同推广产品下的优质历史图片 / 视频素材，搭配广告主上传组件填充到广告创意中，无需每次都重新制作素材，也能持续保持创意丰富度。
 ⚠️ 建议长期开启
@@ -469,6 +486,7 @@ const DATA = [
     products: [
       {
         name: "专场放量",
+        tip: "直播大场必备，稳定跑量",
         warm: false,
         advice: `优势：大场客户使用后开场 3h 起量效率 +197%，快速度过冷启。
 ① 短期放量 eGMV 校准
@@ -479,6 +497,7 @@ const DATA = [
       },
       {
         name: "潜客优投",
+        tip: "对高购买意向用户单独提价",
         warm: true,
         advice: `🚩 小店「潜客优投」：高效触达「高购买意向潜客」，预期可帮助商家获得更多成交转化，提升投放效果。
 🚩 使用建议：新广告正常出价，用提价系数可以对高潜人群精准提价，系数建议 1.1 ~ 1.2，可逐步提升。`,
@@ -486,6 +505,7 @@ const DATA = [
       },
       {
         name: "直播快推",
+        tip: "小预算快速放量，激进探索",
         warm: false,
         advice: `优势：客户为已有的小店艾米项目单独指定一笔预算，由系统激进探索，提升该项目的起量跑量能力，可与专场放量叠加使用。
 操作建议：单项目设置 2000 预算，每个项目每天开启 1 - 2 次
@@ -494,12 +514,14 @@ const DATA = [
       },
       {
         name: "一键起量",
+        tip: "小预算快速放量，激进探索",
         warm: false,
         advice: `3.0 的一键起量 = 艾米的直播快推，均为小预算激进探索能力。`,
         ref: { title: "一键起量升级说明文档（对外）", url: "https://doc.weixin.qq.com/doc/w3_AYQAsgaGABAJuza3gAFR7K5bi2eC1" }
       },
       {
         name: "创意优投",
+        tip: "对指定素材单独提价",
         warm: false,
         advice: `优势：客户对新素材 / 跑量素材 / 衰退素材，单独提价，提升指定素材的跑量能力。
 操作建议：不设置预算。`,
@@ -525,7 +547,8 @@ DATA.forEach(scene => {
         <button class="chip ${p.warm?'warm':''} ${IMGS[p.name]?'has-img':''}"
                 data-scene="${scene.id}" data-name="${p.name}"
                 aria-pressed="false">
-          ${p.warm?'<span class="star">★</span>':''}${p.name}
+          <span class="name">${p.warm?'<span class="star">★</span>':''}${p.name}</span>
+          <span class="tip">${escapeHTML(p.tip || "")}</span>
         </button>
       `).join("")}
     </div>
