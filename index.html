@@ -367,61 +367,179 @@
     max-width:1200px;
     margin:0 auto 60px;
     padding:0 24px;
-    display:flex;flex-direction:column;gap:18px;
+    display:flex;flex-direction:column;gap:0;
   }
   .basic-card{
-    background:rgba(255,255,255,.78);
+    position:relative;
+    background:rgba(255,255,255,.82);
     border:1px solid rgba(46,124,182,.18);
     border-radius:18px;
     box-shadow:var(--shadow);
     overflow:hidden;
     backdrop-filter:blur(6px);
   }
+  /* 卡片间连接箭头 */
+  .basic-card + .basic-card{margin-top:34px}
+  .basic-card + .basic-card::before{
+    content:"↓";
+    position:absolute;top:-30px;left:50%;transform:translateX(-50%);
+    width:26px;height:26px;border-radius:50%;
+    background:#2E7CB6;color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:14px;line-height:1;
+    box-shadow:0 4px 10px rgba(46,124,182,.35);
+  }
   .bc-head{
     display:flex;align-items:center;gap:12px;
-    padding:16px 22px;
+    padding:16px 22px 14px;
     background:linear-gradient(180deg, rgba(199,236,255,.65), rgba(199,236,255,0));
     border-bottom:1px dashed rgba(46,124,182,.25);
   }
   .bc-idx{
-    width:28px;height:28px;border-radius:50%;
-    background:#2E7CB6;color:#fff;
+    width:30px;height:30px;border-radius:50%;
+    background:linear-gradient(135deg,#2E7CB6,#4FA8E0);color:#fff;
     display:inline-flex;align-items:center;justify-content:center;
-    font-weight:700;font-size:14px;flex-shrink:0;
+    font-weight:700;font-size:15px;flex-shrink:0;
+    box-shadow:0 3px 8px rgba(46,124,182,.35);
   }
-  .bc-head h3{margin:0;font-size:16px;color:#0f3b66;font-weight:700}
+  .bc-head h3{margin:0;font-size:16.5px;color:#0f3b66;font-weight:700}
+  .bc-head .sub{margin-left:auto;font-size:12px;color:#5b7a99}
   .bc-body{
-    display:grid;grid-template-columns:1.4fr 1fr;gap:18px;
+    display:grid;grid-template-columns:1.5fr 1fr;gap:18px;
     padding:16px 22px 20px;
   }
   @media (max-width:780px){.bc-body{grid-template-columns:1fr}}
   .bc-body h4{
-    margin:0 0 8px;font-size:12px;color:#0f3b66;
+    margin:0 0 10px;font-size:12px;color:#0f3b66;
     text-transform:uppercase;letter-spacing:1px;font-weight:700;
   }
+
+  /* 原则列表 */
   .bc-principles ul{
-    margin:0;padding-left:18px;
-    color:#243b53;font-size:13.5px;line-height:1.85;
+    margin:0;padding-left:0;list-style:none;
+    color:#243b53;font-size:13.5px;line-height:1.75;
   }
-  .bc-principles li{margin-bottom:6px}
+  .bc-principles li{
+    margin-bottom:10px;padding-left:16px;position:relative;
+  }
+  .bc-principles li::before{
+    content:"";position:absolute;left:0;top:9px;
+    width:6px;height:6px;border-radius:2px;background:#4FA8E0;
+  }
   .bc-principles li b{color:#0f3b66}
-  .bc-principles ul ul{margin-top:4px}
-  .bc-principles ul ul li{margin-bottom:2px;font-size:13px}
-  .bench-row{display:flex;flex-direction:column;gap:10px}
-  .bench{
+  .bc-principles ul ul{margin-top:6px}
+  .bc-principles ul ul li{
+    margin-bottom:4px;font-size:12.5px;color:#4b6377;padding-left:14px;
+  }
+  .bc-principles ul ul li::before{
+    content:"·";width:auto;height:auto;background:none;top:-2px;
+    font-weight:700;color:#4FA8E0;font-size:14px;
+  }
+
+  /* 公式块 */
+  .formula{
+    display:flex;align-items:center;flex-wrap:wrap;gap:8px;
     background:#F8FBFF;border:1px solid #E1EEF9;border-radius:10px;
-    padding:10px 12px;
+    padding:10px 14px;margin:8px 0 4px;
   }
-  .bench .b-tag{
-    display:inline-block;
+  .formula .f{
+    background:#fff;border:1px solid #C7ECFF;color:#0f3b66;
+    border-radius:8px;padding:4px 12px;
+    font-weight:700;font-size:13px;
+    box-shadow:0 2px 4px rgba(46,124,182,.10);
+  }
+  .formula .op{color:#4FA8E0;font-weight:800;font-size:15px}
+  .formula .note{font-size:11.5px;color:#64748b;width:100%}
+
+  /* 时间线（冷启周期） */
+  .timeline{
+    display:flex;align-items:center;margin:8px 0 4px;
+    font-size:12px;color:#4b6377;
+  }
+  .timeline .tl{
+    flex:1;height:6px;border-radius:3px;
+    background:linear-gradient(90deg,#C7ECFF 0%,#4FA8E0 60%,#f0c75e 100%);
+    position:relative;margin:0 8px;
+  }
+  .timeline .tl::after{
+    content:"";position:absolute;right:-2px;top:-4px;
+    width:14px;height:14px;border-radius:50%;
+    background:#f0c75e;border:3px solid #fff;
+    box-shadow:0 1px 4px rgba(184,134,11,.4);
+  }
+
+  /* 堆叠比例条 */
+  .stack{
+    display:flex;height:34px;border-radius:9px;overflow:hidden;
+    margin:10px 0 6px;
+    box-shadow:inset 0 1px 2px rgba(0,0,0,.06);
+  }
+  .stack .seg{
+    display:flex;align-items:center;justify-content:center;
+    font-size:11.5px;font-weight:700;color:#fff;
+    white-space:nowrap;overflow:hidden;
+    min-width:0;
+  }
+  .seg.c1{background:linear-gradient(180deg,#4FA8E0,#2E7CB6)}
+  .seg.c2{background:linear-gradient(180deg,#f5d67a,#eec23f)}
+  .seg.c3{background:linear-gradient(180deg,#b7c6d4,#9aadc0)}
+  .stack-legend{
+    display:flex;flex-wrap:wrap;gap:10px;font-size:11.5px;color:#4b6377;margin-bottom:8px;
+  }
+  .stack-legend i{
+    display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px;
+    vertical-align:-1px;
+  }
+  .stack-legend .l1 i{background:#2E7CB6}
+  .stack-legend .l2 i{background:#eec23f}
+  .stack-legend .l3 i{background:#9aadc0}
+
+  /* 乘法组合（OG × 推广产品） */
+  .combo{
+    display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:8px 0 6px;
+  }
+  .combo .pill{
+    background:#fff;border:1px solid #C7ECFF;border-radius:999px;
+    padding:3px 11px;font-size:12px;font-weight:600;color:#0f3b66;
+    box-shadow:0 2px 4px rgba(46,124,182,.10);
+  }
+  .combo .x{color:#4FA8E0;font-weight:800}
+
+  /* benchmark 对比条 */
+  .bc-bench{
+    background:#F8FBFF;border:1px solid #E1EEF9;border-radius:12px;
+    padding:14px 16px;
+    display:flex;flex-direction:column;gap:12px;
+    align-self:start;
+  }
+  .bc-bench h4{margin:0}
+  .bm{
+    display:grid;grid-template-columns:44px 1fr;gap:8px;align-items:center;
+  }
+  .bm .bm-label{
+    font-size:11px;font-weight:700;text-align:center;
+    border-radius:6px;padding:3px 0;
+  }
+  .bm.daily .bm-label{background:#EAF6FF;color:#0f3b66}
+  .bm.big .bm-label{background:#FFF3C9;color:#7a5b00}
+  .bm .bm-track{
+    background:#EDF3F8;border-radius:6px;height:22px;position:relative;overflow:hidden;
+  }
+  .bm .bm-fill{
+    position:absolute;inset:0 auto 0 0;border-radius:6px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:11.5px;font-weight:700;color:#fff;white-space:nowrap;
+  }
+  .bm.daily .bm-fill{background:linear-gradient(90deg,#4FA8E0,#2E7CB6)}
+  .bm.big .bm-fill{background:linear-gradient(90deg,#f5d67a,#e8a200)}
+  .bm .bm-fill span{
     font-size:11px;font-weight:700;
-    padding:2px 10px;border-radius:999px;
-    background:var(--blue);color:#0f3b66;
-    margin-bottom:6px;
   }
-  .bench .b-tag.big{background:#FFF3C9;color:#7a5b00}
-  .bench p{
-    margin:0;font-size:13px;color:#243b53;line-height:1.7;white-space:pre-line;
+  .bm .bm-sub{
+    grid-column:2;font-size:11px;color:#64748b;margin-top:-4px;
+  }
+  .bench-note{
+    font-size:11px;color:#8aa0b2;border-top:1px dashed #E1EEF9;padding-top:8px;margin-top:2px;
   }
 </style>
 </head>
@@ -451,6 +569,7 @@
     <div class="bc-head">
       <span class="bc-idx">1</span>
       <h3>账户模型化</h3>
+      <span class="sub">每个账户 = 一个模型</span>
     </div>
     <div class="bc-body">
       <div class="bc-principles">
@@ -458,15 +577,28 @@
         <ul>
           <li><b>商品基准的模型：</b>每个账户就是一个模型，后期建议账户之间区分商品 / 类目来精细化运营</li>
           <li><b>余额 = 竞争力：</b>为保证账户竞争力充足，建议保持账户余额 = 3 倍目标日耗</li>
-          <li>账户冷启周期 3 - 5 天，前期需充分探索</li>
         </ul>
+        <div class="formula">
+          <span class="f">账户余额</span><span class="op">=</span><span class="f">3 ×</span><span class="f">目标日耗</span>
+          <span class="note">余额充足才有账户竞争力</span>
+        </div>
+        <div class="timeline">
+          <span>开户</span>
+          <span class="tl"></span>
+          <span><b style="color:#7a5b00">3 - 5 天</b> 冷启周期，前期充分探索</span>
+        </div>
       </div>
       <div class="bc-bench">
-        <h4>数量 Benchmark</h4>
-        <div class="bench-row">
-          <div class="bench"><span class="b-tag">日常场</span><p>单场账户数：3 - 4 个</p></div>
-          <div class="bench"><span class="b-tag big">大场</span><p>单场账户数：5 - 10 个</p></div>
+        <h4>数量 Benchmark · 单场账户数</h4>
+        <div class="bm daily">
+          <div class="bm-label">日常场</div>
+          <div class="bm-track"><div class="bm-fill" style="width:40%"><span>3 - 4 个</span></div></div>
         </div>
+        <div class="bm big">
+          <div class="bm-label">大场</div>
+          <div class="bm-track"><div class="bm-fill" style="width:100%"><span>5 - 10 个</span></div></div>
+        </div>
+        <div class="bench-note">按商品 / 类目区分账户，精细化运营</div>
       </div>
     </div>
   </article>
@@ -475,32 +607,50 @@
     <div class="bc-head">
       <span class="bc-idx">2</span>
       <h3>广告多样化</h3>
+      <span class="sub">OG × 推广产品 × 版位</span>
     </div>
     <div class="bc-body">
       <div class="bc-principles">
         <h4>原理及建议</h4>
         <ul>
-          <li><b>营销组合多样化：</b>使用不同 OG × 推广产品，来提升广告基建数量
-            <ul>
-              <li>OG：下单 / 下单-下单ROI / 24小时下单</li>
-              <li>推广产品：视频号直播 / 商品聚合页</li>
-            </ul>
-          </li>
-          <li><b>流量版位：</b>建议以视频号为主
-            <ul>
-              <li>视频号 ： 朋友圈 ： 其他（公众号小程序 &amp; PCAD）= 7 : 2 : 1</li>
-            </ul>
-          </li>
+          <li><b>营销组合多样化：</b>使用不同 OG × 推广产品，来提升广告基建数量</li>
+        </ul>
+        <div class="combo">
+          <span class="pill">下单</span><span class="x">×</span>
+          <span class="pill">下单-下单ROI</span><span class="x">×</span>
+          <span class="pill">24小时下单</span><span class="x">×</span>
+          <span class="pill">视频号直播</span><span class="x">×</span>
+          <span class="pill">商品聚合页</span>
+        </div>
+        <ul>
+          <li><b>流量版位：</b>建议以视频号为主</li>
+        </ul>
+        <div class="stack">
+          <div class="seg c1" style="width:70%">视频号 7</div>
+          <div class="seg c2" style="width:20%">朋友圈 2</div>
+          <div class="seg c3" style="width:10%">其他 1</div>
+        </div>
+        <div class="stack-legend">
+          <span class="l1"><i></i>视频号</span>
+          <span class="l2"><i></i>朋友圈</span>
+          <span class="l3"><i></i>其他（公众号小程序 &amp; PCAD）</span>
+        </div>
+        <ul>
           <li><b>定向：</b>前期先放宽，帮助模型稳定；后期可测试人群包定投 / 排除、配置分人群出价，帮助人群更精准</li>
-          <li><b>出价：</b>下单出价 = 客单价 ÷ 目标 ROI，开场可适当提 30% - 50% 出价探底，ROI 不达标尝试阶梯降价时不要频繁调价 &amp; 大幅提价防止掉量，单日调价 &lt; 2 次、幅度 &lt; 15%</li>
+          <li><b>出价：</b>下单出价 = 客单价 ÷ 目标 ROI；开场可提 30% - 50% 探底；ROI 不达标阶梯降价时不要频繁调价 &amp; 大幅提价防止掉量，单日调价 &lt; 2 次、幅度 &lt; 15%</li>
         </ul>
       </div>
       <div class="bc-bench">
-        <h4>数量 Benchmark</h4>
-        <div class="bench-row">
-          <div class="bench"><span class="b-tag">日常场</span><p>单账户广告数：5 - 10 条</p></div>
-          <div class="bench"><span class="b-tag big">大场</span><p>单账户广告数：10 - 15 条</p></div>
+        <h4>数量 Benchmark · 单账户广告数</h4>
+        <div class="bm daily">
+          <div class="bm-label">日常场</div>
+          <div class="bm-track"><div class="bm-fill" style="width:66%"><span>5 - 10 条</span></div></div>
         </div>
+        <div class="bm big">
+          <div class="bm-label">大场</div>
+          <div class="bm-track"><div class="bm-fill" style="width:100%"><span>10 - 15 条</span></div></div>
+        </div>
+        <div class="bench-note">围绕不同 OG、版位组合、定向策略搭建</div>
       </div>
     </div>
   </article>
@@ -509,34 +659,48 @@
     <div class="bc-head">
       <span class="bc-idx">3</span>
       <h3>素材差异化</h3>
+      <span class="sub">tid = 素材 × 文案 × 落地页 × 营销组件</span>
     </div>
     <div class="bc-body">
       <div class="bc-principles">
         <h4>原理及建议</h4>
         <ul>
-          <li><b>素材配比合理化：</b>
-            <ul>
-              <li>视频 ： 图片 ： 直播实时画面 = 6 : 2 : 2</li>
-              <li>视频素材之间保持 30% 以下重复度</li>
-            </ul>
-          </li>
-          <li><b>素材制作标准：</b>
-            <ul>
-              <li>重点关注指标：3s 快滑率、平均播放时长、ecpm、ctr、cvr</li>
-            </ul>
-          </li>
+          <li><b>素材配比合理化：</b>视频 ： 图片 ： 直播实时画面 = 6 : 2 : 2，视频素材之间保持 30% 以下重复度</li>
         </ul>
+        <div class="stack">
+          <div class="seg c1" style="width:60%">视频 60%</div>
+          <div class="seg c2" style="width:20%">图片 20%</div>
+          <div class="seg c3" style="width:20%">实时画面 20%</div>
+        </div>
+        <div class="stack-legend">
+          <span class="l1"><i></i>视频</span>
+          <span class="l2"><i></i>图片</span>
+          <span class="l3"><i></i>直播实时画面</span>
+        </div>
+        <ul>
+          <li><b>素材制作标准：</b>重点关注 3s 快滑率、平均播放时长、ecpm、ctr、cvr</li>
+        </ul>
+        <div class="formula">
+          <span class="f">素材</span><span class="op">×</span>
+          <span class="f">文案</span><span class="op">×</span>
+          <span class="f">落地页</span><span class="op">×</span>
+          <span class="f">营销组件</span><span class="op">=</span><span class="f">tid</span>
+          <span class="note">单创意拉满 tid，素材组合最大化</span>
+        </div>
       </div>
       <div class="bc-bench">
-        <h4>数量 Benchmark</h4>
-        <div class="bench-row">
-          <div class="bench"><span class="b-tag">日常场</span><p>单广告创意数：10 - 15 套
-单创意 tid 数：10 - 15
-（tid = 素材 × 文案 × 落地页 × 营销组件）</p></div>
-          <div class="bench"><span class="b-tag big">大场</span><p>单广告创意数：10 - 15 套
-单创意 tid 数：10 - 15
-（tid = 素材 × 文案 × 落地页 × 营销组件）</p></div>
+        <h4>数量 Benchmark · 创意 &amp; tid</h4>
+        <div class="bm daily">
+          <div class="bm-label">日常场</div>
+          <div class="bm-track"><div class="bm-fill" style="width:100%"><span>创意 10 - 15 套</span></div></div>
+          <div class="bm-sub">单创意 tid 数：10 - 15</div>
         </div>
+        <div class="bm big">
+          <div class="bm-label">大场</div>
+          <div class="bm-track"><div class="bm-fill" style="width:100%"><span>创意 10 - 15 套</span></div></div>
+          <div class="bm-sub">单创意 tid 数：10 - 15</div>
+        </div>
+        <div class="bench-note">日常 / 大场量级一致，差异在账户与广告层</div>
       </div>
     </div>
   </article>
