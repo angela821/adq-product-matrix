@@ -340,6 +340,89 @@
   footer{
     text-align:center;color:#6b7280;font-size:12px;padding:20px 0 40px;
   }
+
+  /* ===== ADQ基础操作 ===== */
+  .section-head{
+    max-width:1200px;margin:48px auto 20px;padding:0 24px;text-align:center;
+  }
+  .section-head .tag2{
+    display:inline-block;
+    background:var(--blue);
+    color:#0f3b66;
+    font-weight:600;
+    font-size:13px;
+    padding:6px 14px;
+    border-radius:999px;
+    letter-spacing:1px;
+    margin-bottom:12px;
+  }
+  .section-head h2{
+    margin:0 0 6px;
+    font-size:clamp(20px,2.6vw,28px);
+    font-weight:800;
+    color:#102a43;
+  }
+  .section-head p{margin:0;color:var(--ink-soft);font-size:13.5px}
+  .basics{
+    max-width:1200px;
+    margin:0 auto 60px;
+    padding:0 24px;
+    display:flex;flex-direction:column;gap:18px;
+  }
+  .basic-card{
+    background:rgba(255,255,255,.78);
+    border:1px solid rgba(46,124,182,.18);
+    border-radius:18px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    backdrop-filter:blur(6px);
+  }
+  .bc-head{
+    display:flex;align-items:center;gap:12px;
+    padding:16px 22px;
+    background:linear-gradient(180deg, rgba(199,236,255,.65), rgba(199,236,255,0));
+    border-bottom:1px dashed rgba(46,124,182,.25);
+  }
+  .bc-idx{
+    width:28px;height:28px;border-radius:50%;
+    background:#2E7CB6;color:#fff;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:14px;flex-shrink:0;
+  }
+  .bc-head h3{margin:0;font-size:16px;color:#0f3b66;font-weight:700}
+  .bc-body{
+    display:grid;grid-template-columns:1.4fr 1fr;gap:18px;
+    padding:16px 22px 20px;
+  }
+  @media (max-width:780px){.bc-body{grid-template-columns:1fr}}
+  .bc-body h4{
+    margin:0 0 8px;font-size:12px;color:#0f3b66;
+    text-transform:uppercase;letter-spacing:1px;font-weight:700;
+  }
+  .bc-principles ul{
+    margin:0;padding-left:18px;
+    color:#243b53;font-size:13.5px;line-height:1.85;
+  }
+  .bc-principles li{margin-bottom:6px}
+  .bc-principles li b{color:#0f3b66}
+  .bc-principles ul ul{margin-top:4px}
+  .bc-principles ul ul li{margin-bottom:2px;font-size:13px}
+  .bench-row{display:flex;flex-direction:column;gap:10px}
+  .bench{
+    background:#F8FBFF;border:1px solid #E1EEF9;border-radius:10px;
+    padding:10px 12px;
+  }
+  .bench .b-tag{
+    display:inline-block;
+    font-size:11px;font-weight:700;
+    padding:2px 10px;border-radius:999px;
+    background:var(--blue);color:#0f3b66;
+    margin-bottom:6px;
+  }
+  .bench .b-tag.big{background:#FFF3C9;color:#7a5b00}
+  .bench p{
+    margin:0;font-size:13px;color:#243b53;line-height:1.7;white-space:pre-line;
+  }
 </style>
 </head>
 <body>
@@ -356,6 +439,108 @@
 </section>
 
 <section class="matrix" id="matrix"><!-- JS 渲染 --></section>
+
+<section class="section-head">
+  <span class="tag2">ADQ 基础操作</span>
+  <h2>三层级搭建逻辑 &amp; 数量 Benchmark</h2>
+  <p>账户模型化 → 广告多样化 → 素材差异化，按日常场 / 大场对照把握量级</p>
+</section>
+
+<section class="basics">
+  <article class="basic-card">
+    <div class="bc-head">
+      <span class="bc-idx">1</span>
+      <h3>账户模型化</h3>
+    </div>
+    <div class="bc-body">
+      <div class="bc-principles">
+        <h4>原理及建议</h4>
+        <ul>
+          <li><b>商品基准的模型：</b>每个账户就是一个模型，后期建议账户之间区分商品 / 类目来精细化运营</li>
+          <li><b>余额 = 竞争力：</b>为保证账户竞争力充足，建议保持账户余额 = 3 倍目标日耗</li>
+          <li>账户冷启周期 3 - 5 天，前期需充分探索</li>
+        </ul>
+      </div>
+      <div class="bc-bench">
+        <h4>数量 Benchmark</h4>
+        <div class="bench-row">
+          <div class="bench"><span class="b-tag">日常场</span><p>单场账户数：3 - 4 个</p></div>
+          <div class="bench"><span class="b-tag big">大场</span><p>单场账户数：5 - 10 个</p></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="basic-card">
+    <div class="bc-head">
+      <span class="bc-idx">2</span>
+      <h3>广告多样化</h3>
+    </div>
+    <div class="bc-body">
+      <div class="bc-principles">
+        <h4>原理及建议</h4>
+        <ul>
+          <li><b>营销组合多样化：</b>使用不同 OG × 推广产品，来提升广告基建数量
+            <ul>
+              <li>OG：下单 / 下单-下单ROI / 24小时下单</li>
+              <li>推广产品：视频号直播 / 商品聚合页</li>
+            </ul>
+          </li>
+          <li><b>流量版位：</b>建议以视频号为主
+            <ul>
+              <li>视频号 ： 朋友圈 ： 其他（公众号小程序 &amp; PCAD）= 7 : 2 : 1</li>
+            </ul>
+          </li>
+          <li><b>定向：</b>前期先放宽，帮助模型稳定；后期可测试人群包定投 / 排除、配置分人群出价，帮助人群更精准</li>
+          <li><b>出价：</b>下单出价 = 客单价 ÷ 目标 ROI，开场可适当提 30% - 50% 出价探底，ROI 不达标尝试阶梯降价时不要频繁调价 &amp; 大幅提价防止掉量，单日调价 &lt; 2 次、幅度 &lt; 15%</li>
+        </ul>
+      </div>
+      <div class="bc-bench">
+        <h4>数量 Benchmark</h4>
+        <div class="bench-row">
+          <div class="bench"><span class="b-tag">日常场</span><p>单账户广告数：5 - 10 条</p></div>
+          <div class="bench"><span class="b-tag big">大场</span><p>单账户广告数：10 - 15 条</p></div>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="basic-card">
+    <div class="bc-head">
+      <span class="bc-idx">3</span>
+      <h3>素材差异化</h3>
+    </div>
+    <div class="bc-body">
+      <div class="bc-principles">
+        <h4>原理及建议</h4>
+        <ul>
+          <li><b>素材配比合理化：</b>
+            <ul>
+              <li>视频 ： 图片 ： 直播实时画面 = 6 : 2 : 2</li>
+              <li>视频素材之间保持 30% 以下重复度</li>
+            </ul>
+          </li>
+          <li><b>素材制作标准：</b>
+            <ul>
+              <li>重点关注指标：3s 快滑率、平均播放时长、ecpm、ctr、cvr</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="bc-bench">
+        <h4>数量 Benchmark</h4>
+        <div class="bench-row">
+          <div class="bench"><span class="b-tag">日常场</span><p>单广告创意数：10 - 15 套
+单创意 tid 数：10 - 15
+（tid = 素材 × 文案 × 落地页 × 营销组件）</p></div>
+          <div class="bench"><span class="b-tag big">大场</span><p>单广告创意数：10 - 15 套
+单创意 tid 数：10 - 15
+（tid = 素材 × 文案 × 落地页 × 营销组件）</p></div>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
 
 <footer>© 大场投流工具指引 · 2.1 需求场景 ✖️ ADQ 产品能力 Mapping</footer>
 
